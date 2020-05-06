@@ -2,10 +2,15 @@ package android.example.sendintentapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MESSAGE = "hello!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMesageActivity.class);
+        EditText editText = findViewById(R.id.send_text);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
 
     }
 }
